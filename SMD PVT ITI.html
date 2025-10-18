@@ -1,0 +1,1519 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMD Private ITI - Skills for Success</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #2980b9 0%, #e67e22 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-right: 0.5rem;
+            font-size: 1.8rem;
+            color: #f39c12;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            position: relative;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.1);
+            border-radius: 25px;
+            transform: scale(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links a:hover::before {
+            transform: scale(1);
+        }
+
+        .nav-links a:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: linear-gradient(135deg, #2980b9 0%, #e67e22 100%);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .dropdown-content a {
+            color: white;
+            padding: 0.7rem 1rem;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+            text-align: left;
+            border-radius: 0;
+        }
+        
+        .dropdown-content a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateX(5px);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Page Transition */
+        body {
+            transition: background-color 0.5s ease;
+        }
+        
+        /* Color Theme Transition */
+        .header, .hero, .dropdown-content, .course-card, .facility-card, .submit-btn {
+            transition: background 0.5s ease, background-color 0.5s ease, color 0.5s ease;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(41, 128, 185, 0.9), rgba(230, 126, 34, 0.9)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100"><rect fill="%23f39c12" width="1000" height="100" opacity="0.1"/><polygon fill="%232980b9" points="0,0 1000,20 1000,100 0,80" opacity="0.2"/></svg>') center/cover;
+            color: white;
+            padding: 140px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><rect fill="white" width="2" height="2" opacity="0.1"><animate attributeName="opacity" values="0.1;0.3;0.1" dur="3s" repeatCount="indefinite"/></rect></svg>') repeat;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: slideInLeft 1s ease-out;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideInLeft 1s ease-out 0.3s both;
+        }
+
+        .hero-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+            animation: slideInLeft 1s ease-out 0.6s both;
+        }
+
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .hero-feature i {
+            font-size: 1.2rem;
+            margin-right: 0.8rem;
+            color: #f39c12;
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: slideInRight 1s ease-out 0.4s both;
+        }
+
+        .hero-image-placeholder {
+            width: 400px;
+            height: 300px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            border: 2px dashed rgba(255,255,255,0.3);
+            font-size: 1rem;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Quick Stats */
+        .quick-stats {
+            background: #f8f9fa;
+            padding: 4rem 0;
+            margin-top: -50px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .stat-item {
+            text-align: center;
+            position: relative;
+        }
+
+        .stat-item::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 20%;
+            bottom: 20%;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, #e67e22, transparent);
+        }
+
+        .stat-item:last-child::after {
+            display: none;
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: #e67e22;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* About ITI Section */
+        .about-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #2980b9, #e67e22);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #2980b9, #e67e22);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .highlight-box h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .highlight-box i {
+            margin-right: 0.8rem;
+            font-size: 1.5rem;
+        }
+
+        .about-image-placeholder {
+            width: 100%;
+            height: 400px;
+            background: #f0f0f0;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #ccc;
+            font-size: 1rem;
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        /* Trades Section */
+        .trades-section {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+
+        .trades-categories {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .category-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #e67e22;
+        }
+
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #2980b9, #e67e22);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .category-card h3 {
+            font-size: 1.6rem;
+            color: #2c3e50;
+        }
+
+        .trades-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .trade-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .trade-item:hover {
+            background: #e8f4fd;
+            transform: translateX(10px);
+        }
+
+        .trade-info h4 {
+            font-size: 1.1rem;
+            color: #2c3e50;
+            margin-bottom: 0.3rem;
+        }
+
+        .trade-info span {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .trade-duration {
+            background: #e67e22;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Facilities Section */
+        .facilities-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .facility-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .facility-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #2980b9, #e67e22);
+        }
+
+        .facility-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .facility-image {
+            height: 200px;
+            background: linear-gradient(45deg, #2980b9, #e67e22);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .facility-content {
+            padding: 2rem;
+        }
+
+        .facility-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .facility-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .facility-features {
+            list-style: none;
+        }
+
+        .facility-features li {
+            padding: 0.3rem 0;
+            color: #555;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .facility-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #e67e22;
+            font-weight: bold;
+        }
+
+        /* Training Methodology */
+        .methodology-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #2980b9 0%, #e67e22 100%);
+            color: white;
+        }
+
+        .methodology-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .method-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .method-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .method-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .method-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Admission Section */
+        .admission-section {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+
+        .admission-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+            margin-top: 3rem;
+        }
+
+        .admission-info {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+
+        .admission-info h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+        }
+
+        .info-grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-item {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #e67e22;
+        }
+
+        .info-item h5 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-item i {
+            margin-right: 0.5rem;
+            color: #e67e22;
+        }
+
+        .info-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .admission-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #e67e22;
+            box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #2980b9, #e67e22);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 126, 34, 0.3);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e1e5e9;
+        }
+
+        .contact-card:hover {
+            background: white;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #2980b9, #e67e22);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .contact-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .contact-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #e67e22;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: #e67e22;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+
+        /* Animations */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+            
+            .hero-image {
+                order: -1;
+            }
+            
+            .hero-features {
+                grid-template-columns: 1fr;
+            }
+
+            .trades-categories {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, #2980b9 0%, #e67e22 100%);
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 0.5rem 0;
+                text-align: center;
+            }
+            
+            .mobile-menu {
+                display: flex;
+            }
+
+            .mobile-menu.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .mobile-menu.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .mobile-menu.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .hero {
+                padding: 120px 0 80px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-image-placeholder {
+                width: 100%;
+                height: 250px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 2rem 1rem;
+            }
+
+            .stat-item::after {
+                display: none;
+            }
+
+            .about-content,
+            .admission-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .methodology-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .about-section,
+            .trades-section,
+            .facilities-section,
+            .methodology-section,
+            .admission-section,
+            .contact-section {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .facilities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #2980b9, #e67e22);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(230, 126, 34, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-tools"></i>
+                SMD Private ITI
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="SMD GROUP OF INSTITUTIONS.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#">Institutions</a>
+                        <div class="dropdown-content">
+                            <a href="SMD GROUP OF INSTITUTIONS.html">SMD Group</a>
+                            <a href="SMD COLLEGE For Graduation.html">SMD College for Graduation</a>
+                            <a href="SMD College of Pharmacy.html">SMD College of Pharmacy</a>
+                            <a href="SMD PVT ITI.html">SMD Private ITI</a>
+                        </div>
+                    </li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#facilities">Facilities</a></li>
+                    <li><a href="#admission">Admission</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Skills for Success</h1>
+                <p class="hero-subtitle">Industrial Training Institute offering technical and vocational courses for immediate employment opportunities</p>
+                
+                <div class="hero-features">
+                    <div class="hero-feature">
+                        <i class="fas fa-clock"></i>
+                        <span>2 Years Duration</span>
+                    </div>
+                    <div class="hero-feature">
+                        <i class="fas fa-certificate"></i>
+                        <span>NCVT/SCVT Certified</span>
+                    </div>
+                    <div class="hero-feature">
+                        <i class="fas fa-handshake"></i>
+                        <span>90% Placement Rate</span>
+                    </div>
+                    <div class="hero-feature">
+                        <i class="fas fa-industry"></i>
+                        <span>Industry Partnerships</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-image">
+                <div class="hero-image-placeholder" style="background: transparent; border: none; padding: 0; display: block;">
+                <img src="smdpvtiti.jpg" alt="Students working in mechanical workshop" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Stats Section -->
+    <section class="quick-stats">
+        <div class="stats-container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">2</span>
+                    <span class="stat-label">Years Duration</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">2</span>
+                    <span class="stat-label">Trades Offered</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">90%+</span>
+                    <span class="stat-label">Placement Rate</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Industry Partners</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About ITI Section -->
+    <section id="about" class="about-section fade-in">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About SMD Private ITI</h2>
+                <p class="section-subtitle">Empowering youth with practical skills for a successful career in industry</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>What is ITI?</h3>
+                    <p>Industrial Training Institute (ITI) provides vocational training in various technical and non-technical trades. Our programs are designed to equip students with practical skills that are directly applicable in the industry.</p>
+                    <p>We focus on skill-based education that bridges the gap between theoretical knowledge and real-world application, ensuring our graduates are job-ready from day one.</p>
+                    <div class="highlight-box">
+                        <h4><i class="fas fa-handshake"></i>Industry Partnership Approach</h4>
+                        <p>We collaborate with leading industries to update our curriculum, provide internships, and facilitate placements for our students.</p>
+                    </div>
+                </div>
+                <div class="about-image-placeholder" style="border: none; background: transparent; padding: 0; display: block;">
+                    <img src="itiworkshop.png" alt="Hands-on training scene" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Categories Section -->
+    <section id="courses" class="trades-section fade-in">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Trades & Courses</h2>
+                <p class="section-subtitle">Choose from a wide range of engineering and non-engineering trades</p>
+            </div>
+            <div class="trades-categories">
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon"><i class="fas fa-tools"></i></div>
+                        <h3>Engineering Trades</h3>
+                    </div>
+                    <div class="trades-list">
+                        <div class="trade-item">
+                            <div class="trade-info">
+                                <h4>Fitter</h4>
+                                <span>Eligibility: 10th Pass | Career: Manufacturing, Maintenance</span>
+                            </div>
+                            <span class="trade-duration">2 Years</span>
+                        </div>
+                        <div class="trade-item">
+                            <div class="trade-info">
+                                <h4>Electrician</h4>
+                                <span>Eligibility: 10th Pass | Career: Electrical Installation</span>
+                            </div>
+                            <span class="trade-duration">2 Years</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon"><i class="fas fa-laptop"></i></div>
+                        <h3>Non-Engineering Trades</h3>
+                    </div>
+                    <div class="trades-list">
+                        <div class="trade-item">
+                            <div class="trade-info">
+                                <h4>Computer Operator</h4>
+                                <span>Eligibility: 10th Pass | Career: IT Support, Data Entry</span>
+                            </div>
+                            <span class="trade-duration">1 Year</span>
+                        </div>
+                        <div class="trade-item">
+                            <div class="trade-info">
+                                <h4>Stenographer</h4>
+                                <span>Eligibility: 10th Pass | Career: Office Administration</span>
+                            </div>
+                            <span class="trade-duration">1 Year</span>
+                        </div>
+                        <div class="trade-item">
+                            <div class="trade-info">
+                                <h4>Secretarial Practice</h4>
+                                <span>Eligibility: 10th Pass | Career: Executive Assistance</span>
+                            </div>
+                            <span class="trade-duration">1 Year</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section id="facilities" class="facilities-section fade-in">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Facilities</h2>
+                <p class="section-subtitle">State-of-the-art infrastructure for practical learning</p>
+            </div>
+            <div class="facilities-grid">
+                <div class="facility-card">
+                    <div class="facility-image">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="facility-content">
+                        <h3>Mechanical Workshop</h3>
+                        <p>Equipped with modern lathes, milling machines, and CNC equipment for hands-on training.</p>
+                        <ul class="facility-features">
+                            <li>Industry-standard tools</li>
+                            <li>Safety gear provided</li>
+                            <li>Expert instructors</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="facility-card">
+                    <div class="facility-image">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="facility-content">
+                        <h3>Electrical Workshop</h3>
+                        <p>Advanced electrical labs with simulation software and real-world wiring setups.</p>
+                        <ul class="facility-features">
+                            <li>High-voltage testing</li>
+                            <li>Circuit design stations</li>
+                            <li>Safety protocols</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="facility-card">
+                    <div class="facility-image">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <div class="facility-content">
+                        <h3>Computer Lab</h3>
+                        <p>Modern computers with latest software for IT and digital skills training.</p>
+                        <ul class="facility-features">
+                            <li>High-speed internet</li>
+                            <li>Software licenses</li>
+                            <li>Air-conditioned rooms</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="facility-card">
+                    <div class="facility-image">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="facility-content">
+                        <h3>Welding Section</h3>
+                        <p>Professional welding booths with MIG, TIG, and arc welding equipment.</p>
+                        <ul class="facility-features">
+                            <li>Ventilation systems</li>
+                            <li>Protective equipment</li>
+                            <li>Material testing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training Methodology Section -->
+    <section id="training" class="methodology-section fade-in">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Training Methodology</h2>
+                <p class="section-subtitle">Practical-focused approach for real-world readiness</p>
+            </div>
+            <div class="methodology-content">
+                <div class="method-card">
+                    <div class="method-icon"><i class="fas fa-balance-scale"></i></div>
+                    <h4>70:30 Practical Theory</h4>
+                    <p>Emphasis on hands-on learning with 70% practical sessions and 30% theoretical knowledge.</p>
+                </div>
+                <div class="method-card">
+                    <div class="method-icon"><i class="fas fa-industry"></i></div>
+                    <h4>Industry Visits</h4>
+                    <p>Regular field trips to factories and workshops for real-world exposure.</p>
+                </div>
+                <div class="method-card">
+                    <div class="method-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h4>Guest Lectures</h4>
+                    <p>Sessions from industry experts sharing practical insights and experiences.</p>
+                </div>
+                <div class="method-card">
+                    <div class="method-icon"><i class="fas fa-project-diagram"></i></div>
+                    <h4>Project Work</h4>
+                    <p>Live projects that simulate real job scenarios and build portfolio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admission Section -->
+    <section id="admission" class="admission-section fade-in">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Admission & Eligibility</h2>
+                <p class="section-subtitle">Join us and start your journey towards a skilled career</p>
+            </div>
+            <div class="admission-content">
+                <div class="admission-info">
+                    <h3>Eligibility Criteria</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <h5><i class="fas fa-user-check"></i>Age Limit</h5>
+                            <p>14-40 years (varies by trade)</p>
+                        </div>
+                        <div class="info-item">
+                            <h5><i class="fas fa-graduation-cap"></i>Educational Qualification</h5>
+                            <p>8th/10th pass depending on the trade</p>
+                        </div>
+                        <div class="info-item">
+                            <h5><i class="fas fa-file-alt"></i>Admission Process</h5>
+                            <p>Merit-based / Entrance exam / Direct admission</p>
+                        </div>
+                        <div class="info-item">
+                            <h5><i class="fas fa-money-bill-wave"></i>Fee Structure</h5>
+                            <p>Affordable fees with installment options</p>
+                        </div>
+                        <div class="info-item">
+                            <h5><i class="fas fa-hand-holding-usd"></i>Scholarships</h5>
+                            <p>Available for meritorious and needy students</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <h5><i class="fas fa-star"></i>Placement & Career Support</h5>
+                        <p>We offer dedicated placement cell with industry tie-ups, job assistance, career guidance, and alumni network for success stories.</p>
+                    </div>
+                </div>
+                <div class="admission-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" placeholder="Enter your phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="trade">Interested Trade</label>
+                            <select id="trade" required>
+                                <option value="">Select Trade</option>
+                                <option value="fitter">Fitter</option>
+                                <option value="electrician">Electrician</option>
+                                <option value="welder">Welder</option>
+                                <option value="computer">Computer Operator</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" placeholder="Your query or message"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Submit Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section fade-in">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get in Touch</h2>
+                <p class="section-subtitle">We're here to answer all your questions</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <h4>Address</h4>
+                    <p>Sukhdev Burj, (Akos) Mathura, Uttar Pradesh 281301</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                    <h4>Phone</h4>
+                    <p>9456212121<br>7037664444</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <h4>Email</h4>
+                    <p>info@smdgroup.edu.in</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>SMD Private ITI</h3>
+                <p>Empowering lives through skill-based education since 2008.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="#home">Home</a></p>
+                <p><a href="#courses">Courses</a></p>
+                <p><a href="#admission">Admission</a></p>
+                <p><a href="#contact">Contact</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <p><a href="#">Facebook</a></p>
+                <p><a href="#">Twitter</a></p>
+                <p><a href="#">LinkedIn</a></p>
+                <p><a href="#">WhatsApp: 7037664444</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SMD Private ITI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile Menu
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            navLinks.classList.toggle('show');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+                if (navLinks.classList.contains('show')) {
+                    mobileMenu.click();
+                }
+            });
+        });
+
+        // Fade In Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Scroll to Top
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Form Submission (for demo)
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for your inquiry! We will get back to you soon.');
+                form.reset();
+            });
+        });
+    </script>
+</body>
+</html>
+```

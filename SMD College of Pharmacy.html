@@ -1,0 +1,1141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMD College of Pharmacy - Diploma in Pharmacy (D.Pharma)</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            margin-top: 70px; /* Matches header height */
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-right: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .dropdown-content a {
+            color: white;
+            padding: 0.7rem 1rem;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+            text-align: left;
+            border-radius: 0;
+        }
+        
+        .dropdown-content a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateX(5px);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 1rem 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .breadcrumb-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .breadcrumb a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9), rgba(52, 152, 219, 0.9)),
+                        url('/images/pharmacy/pharmacy-hero.jpg') center/cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden; /* Prevent overflow issues */
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Course Overview */
+        .course-overview {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .overview-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .overview-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .course-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .highlight-card {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .highlight-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Curriculum Section */
+        .curriculum {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .curriculum-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .curriculum-year {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .curriculum-year h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
+            text-align: center;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #3498db;
+        }
+
+        .subject-list {
+            list-style: none;
+        }
+
+        .subject-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .subject-list li:last-child {
+            border-bottom: none;
+        }
+
+        .subject-list i {
+            color: #3498db;
+            margin-right: 1rem;
+        }
+
+        /* Facilities Section */
+        .facilities {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .facility-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .facility-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .facility-image {
+            height: 200px;
+            background: linear-gradient(45deg, #3498db, #2c3e50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .facility-content {
+            padding: 1.5rem;
+        }
+
+        .facility-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .facility-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Admission Section */
+        .admission {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+        }
+
+        .admission-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .admission-info h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .info-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #ecf0f1;
+        }
+
+        .info-item p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .admission-form {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            background: white;
+            color: #2c3e50;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,255,255,0.3);
+        }
+
+        /* Approvals Section */
+        .approvals {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .approvals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .approval-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .approval-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .approval-card i {
+            font-size: 3rem;
+            color: #27ae60;
+            margin-bottom: 1rem;
+        }
+
+        .approval-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #3498db;
+        }
+
+        .footer-section p,
+        .footer-section li {
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #3498db;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 1rem;
+            text-align: center;
+            opacity: 0.6;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in, .hero, .header {
+            transition: all 0.3s ease;
+        }
+        
+        /* Page Transition */
+        body {
+            transition: background-color 0.5s ease;
+        }
+        
+        /* Color Theme Transition */
+        .header, .hero, .dropdown-content, .submit-btn, .course-card, .facility-card {
+            transition: background 0.5s ease, background-color 0.5s ease, color 0.5s ease;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 1rem;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+                padding: 1rem 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                text-align: center;
+            }
+
+            .hero {
+                padding: 60px 0; /* Reduce padding on mobile */
+            }
+
+            .hero h1 {
+                font-size: 1.8rem; /* Smaller heading on mobile */
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .overview-grid,
+            .admission-grid,
+            .curriculum-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .course-highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .approvals-grid, .facilities-grid {
+                grid-template-columns: 1fr; /* Stack cards on mobile */
+            }
+        }
+
+        /* Custom Styles for Pharmacy Theme */
+        .pharmacy-theme {
+            background: linear-gradient(45deg, #3498db, #2c3e50);
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(52, 152, 219, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(52, 152, 219, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-pills"></i>
+                SMD College of Pharmacy
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="SMD GROUP OF INSTITUTIONS.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#">Institutions</a>
+                        <div class="dropdown-content">
+                            <a href="SMD GROUP OF INSTITUTIONS.html">SMD Group</a>
+                            <a href="SMD COLLEGE For Graduation.html">SMD College for Graduation</a>
+                            <a href="SMD College of Pharmacy.html">SMD College of Pharmacy</a>
+                            <a href="SMD PVT ITI.html">SMD Private ITI</a>
+                        </div>
+                    </li>
+                    <li><a href="#course">Course</a></li>
+                    <li><a href="#facilities">Facilities</a></li>
+                    <li><a href="#admission">Admission</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="breadcrumb-container">
+            <a href="/">Home</a> > <a href="/#institutions">Institutions</a> > <strong>SMD College of Pharmacy</strong>
+        </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>SMD College of Pharmacy</h1>
+            <p class="hero-subtitle">Diploma in Pharmacy (D.Pharma) - Your Gateway to Healthcare Excellence</p>
+            
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">2</span>
+                    <span>Years Program</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">300+</span>
+                    <span>Alumni Network</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Approvals -->
+    <section class="approvals">
+        <div class="container">
+            <h2 class="section-title fade-in">Approvals & Affiliations</h2>
+            <p class="section-subtitle fade-in">Recognized and approved by leading pharmaceutical education bodies</p>
+            
+            <div class="approvals-grid">
+                <div class="approval-card fade-in">
+                    <i class="fas fa-certificate"></i>
+                    <h4>PCI Approved</h4>
+                    <p>Pharmacy Council of India (PCI) Affiliation Letter 2023-24. Our curriculum meets national pharmaceutical education standards.</p>
+                </div>
+                <div class="approval-card fade-in">
+                    <i class="fas fa-university"></i>
+                    <h4>BTE Affiliated</h4>
+                    <p>Board of Technical Education (BTE) Affiliation Letter 2023-24. Ensures quality technical education and recognized certification.</p>
+                </div>
+                <div class="approval-card fade-in">
+                    <i class="fas fa-award"></i>
+                    <h4>SIF Certified</h4>
+                    <p>Self-Assessment & Internal Quality Report certified. Maintains high standards in pharmaceutical education and infrastructure.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Overview -->
+    <section class="course-overview" id="course">
+        <div class="container">
+            <h2 class="section-title fade-in">Course Overview</h2>
+            <p class="section-subtitle fade-in">Comprehensive pharmaceutical education for tomorrow's healthcare professionals</p>
+            
+            <div class="overview-grid">
+                <div class="overview-text fade-in">
+                    <h3>Diploma in Pharmacy (D.Pharma)</h3>
+                    <p>A D.Pharm (Diploma in Pharmacy) is a 2-year undergraduate diploma program that provides foundational knowledge and practical skills in pharmaceutical sciences.</p>
+                    <p>The course covers subjects like pharmacology, pharmacognosy, pharmaceutical chemistry, and hospital and clinical pharmacy. It prepares students for roles in community pharmacies, hospitals, and other healthcare settings.</p>
+                    <p>After completing the course, graduates are eligible to register as pharmacists and work in various pharmaceutical sectors or pursue higher education like B.Pharm (Bachelor of Pharmacy).</p>
+                </div>
+                <div class="overview-image fade-in">
+                    <!-- Replace with actual image: /images/pharmacy/d-pharma-overview.jpg -->
+                    <div style="background: linear-gradient(45deg, #3498db, #2c3e50); height: 400px; border-radius: 15px; display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem;">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-highlights">
+                <div class="highlight-card fade-in">
+                    <i class="fas fa-flask"></i>
+                    <h4>Practical Learning</h4>
+                    <p>Hands-on experience in well-equipped laboratories</p>
+                </div>
+                <div class="highlight-card fade-in">
+                    <i class="fas fa-user-md"></i>
+                    <h4>Expert Faculty</h4>
+                    <p>Learn from experienced pharmaceutical professionals</p>
+                </div>
+                <div class="highlight-card fade-in">
+                    <i class="fas fa-certificate"></i>
+                    <h4>Industry Recognition</h4>
+                    <p>Nationally recognized diploma with excellent career prospects</p>
+                </div>
+                <div class="highlight-card fade-in">
+                    <i class="fas fa-briefcase"></i>
+                    <h4>Job Opportunities</h4>
+                    <p>Multiple career paths in healthcare and pharmaceutical industries</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Curriculum -->
+    <section class="curriculum">
+        <div class="container">
+            <h2 class="section-title fade-in">Curriculum Structure</h2>
+            <p class="section-subtitle fade-in">Comprehensive 2-year program designed to build pharmaceutical expertise</p>
+            
+            <div class="curriculum-content">
+                <div class="curriculum-year fade-in">
+                    <h3>First Year Subjects</h3>
+                    <ul class="subject-list">
+                        <li><i class="fas fa-check-circle"></i> Pharmaceutics</li>
+                        <li><i class="fas fa-check-circle"></i> Pharmaceutical Chemistry</li>
+                        <li><i class="fas fa-check-circle"></i> Pharmacognosy</li>
+                        <li><i class="fas fa-check-circle"></i> Human Anatomy and Physiology</li>
+                        <li><i class="fas fa-check-circle"></i> Health Education and Community Pharmacy</li>
+                        <li><i class="fas fa-check-circle"></i> Practical Training</li>
+                    </ul>
+                </div>
+                <div class="curriculum-year fade-in">
+                    <h3>Second Year Subjects</h3>
+                    <ul class="subject-list">
+                        <li><i class="fas fa-check-circle"></i> Pharmacology & Toxicology</li>
+                        <li><i class="fas fa-check-circle"></i> Pharmaceutical Chemistry (Advanced)</li>
+                        <li><i class="fas fa-check-circle"></i> Pharmaceutics (Advanced)</li>
+                        <li><i class="fas fa-check-circle"></i> Pharmaceutical Jurisprudence</li>
+                        <li><i class="fas fa-check-circle"></i> Drug Store and Business Management</li>
+                        <li><i class="fas fa-check-circle"></i> Hospital and Clinical Pharmacy</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities -->
+    <section class="facilities" id="facilities">
+        <div class="container">
+            <h2 class="section-title fade-in">World-Class Facilities</h2>
+            <p class="section-subtitle fade-in">State-of-the-art infrastructure to support your pharmaceutical education</p>
+            
+            <div class="facilities-grid">
+                <div class="facility-card fade-in">
+                    <div class="facility-image">
+                        <!-- Replace with: /images/pharmacy/chemistry-lab.jpg -->
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="facility-content">
+                        <h4>Chemistry Laboratory</h4>
+                        <p>Modern chemistry lab equipped with latest instruments and chemicals for practical pharmaceutical chemistry experiments and analysis.</p>
+                    </div>
+                </div>
+                <div class="facility-card fade-in">
+                    <div class="facility-image">
+                        <!-- Replace with: /images/pharmacy/library.jpg -->
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="facility-content">
+                        <h4>Comprehensive Library</h4>
+                        <p>Extensive collection of pharmaceutical books, journals, and digital resources to support your academic research and learning.</p>
+                    </div>
+                </div>
+                <div class="facility-card fade-in">
+                    <div class="facility-image">
+                        <!-- Replace with: /images/pharmacy/computer-lab.jpg -->
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <div class="facility-content">
+                        <h4>Computer Laboratory</h4>
+                        <p>Modern computer lab with high-speed internet and pharmaceutical software for digital learning and research activities.</p>
+                    </div>
+                </div>
+                <div class="facility-card fade-in">
+                    <div class="facility-image">
+                        <!-- Replace with: /images/pharmacy/dispensing-lab.jpg -->
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <div class="facility-content">
+                        <h4>Dispensing Laboratory</h4>
+                        <p>Practical dispensing lab simulating real pharmacy environment for hands-on training in medication preparation and dispensing.</p>
+                    </div>
+                </div>
+                <div class="facility-card fade-in">
+                    <div class="facility-image">
+                        <!-- Replace with: /images/pharmacy/principal-room.jpg -->
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="facility-content">
+                        <h4>Administrative Block</h4>
+                        <p>Well-organized administrative facilities including principal's office, faculty rooms, and student counseling centers.</p>
+                    </div>
+                </div>
+                <div class="facility-card fade-in">
+                    <div class="facility-image">
+                        <!-- Replace with: /images/pharmacy/herbal-garden.jpg -->
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="facility-content">
+                        <h4>Herbal Garden</h4>
+                        <p>Medicinal plant garden for practical study of pharmacognosy and understanding of natural drug sources.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admission -->
+    <section class="admission" id="admission">
+        <div class="container">
+            <h2 class="section-title fade-in">Admission Information</h2>
+            <p class="section-subtitle fade-in">Start your journey in pharmaceutical sciences with us</p>
+            
+            <div class="admission-grid">
+                <div class="admission-info fade-in">
+                    <h3>Admission Requirements</h3>
+                    
+                    <div class="info-item">
+                        <h4><i class="fas fa-graduation-cap"></i> Eligibility Criteria</h4>
+                        <p>12th pass (Science stream) with Physics, Chemistry, and Biology/Mathematics. Minimum 50% marks required.</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h4><i class="fas fa-calendar-alt"></i> Academic Session</h4>
+                        <p>Admissions open for 2024-25 session. Classes start from July. Apply now to secure your seat.</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h4><i class="fas fa-rupee-sign"></i> Fee Structure</h4>
+                        <p>Affordable fee structure with installment options. Scholarships available for meritorious students.</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h4><i class="fas fa-file-alt"></i> Required Documents</h4>
+                        <p>10th & 12th Marksheets, Transfer Certificate, Character Certificate, Passport-size photographs, and Aadhar Card.</p>
+                    </div>
+                </div>
+                
+                <div class="admission-form fade-in">
+                    <h3>Quick Inquiry Form</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="qualification">Qualification</label>
+                            <select id="qualification" name="qualification">
+                                <option>12th Appearing</option>
+                                <option>12th Passed</option>
+                                <option>Graduate</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Any specific questions about the course?"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn pulse">Submit Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Contact Information</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Sukhdev Burj, (Akos)<br>Mathura, Uttar Pradesh 281301</p>
+                    <p><i class="fas fa-phone"></i> 9456212121, 7037664444</p>
+                    <p><i class="fas fa-envelope"></i> pharmacy@smdgroup.edu.in</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#course">Course Details</a></li>
+                        <li><a href="#facilities">Facilities</a></li>
+                        <li><a href="#admission">Admission</a></li>
+                        <li><a href="/pharmacy/fee-structure">Fee Structure</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Other Institutions</h4>
+                    <ul>
+                        <li><a href="/graduation">SMD College (Graduation)</a></li>
+                        <li><a href="/iti">SMD Pvt. ITI</a></li>
+                        <li><a href="/btc">SMD College (BTC)</a></li>
+                        <li><a href="/school">SMD International School</a></li>
+                        <li><a href="/inter-college">Diwan Singh Inter College</a></li>
+                        <li><a href="/education-centre">SMD Education Centre</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <p>Stay connected with SMD Group for latest updates and announcements.</p>
+                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                        <a href="#" style="color: #3498db; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: #3498db; font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: #3498db; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: #3498db; font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 SMD Group of Institutions. All rights reserved. | Developed with ❤️ for quality education</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    if (entry.target.classList.contains('hero')) {
+                        const statNumbers = document.querySelectorAll('.stat-number');
+                        statNumbers.forEach(stat => {
+                            const originalText = stat.textContent;
+                            const target = parseInt(originalText);
+                            const suffix = originalText.replace(target.toString(), '');
+                            animateCounter(stat, target, suffix);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with fade-in class
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        observer.observe(document.querySelector('.hero'));
+
+        // Form submission handling
+        const form = document.querySelector('form');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData);
+                
+                // Simple validation
+                if (!data.name || !data.email || !data.phone) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+                
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(data.email)) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+                
+                // Phone validation (basic)
+                const phoneRegex = /^[6-9]\d{9}$/;
+                if (!phoneRegex.test(data.phone)) {
+                    alert('Please enter a valid 10-digit mobile number.');
+                    return;
+                }
+                
+                // Success message
+                alert('Thank you for your inquiry! We will contact you soon.');
+                form.reset();
+            });
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'linear-gradient(135deg, rgba(44, 62, 80, 0.95) 0%, rgba(52, 152, 219, 0.95) 100%)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #2c3e50 0%, #3498db 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Counter animation for hero stats
+        function animateCounter(element, target, suffix, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target + suffix;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start) + suffix;
+                }
+            }, 16);
+        }
+
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+            });
+        }
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = 'translateY(' + (scrolled * -0.2) + 'px)';
+            }
+        });
+    </script>
+</body>
+</html>
+```
